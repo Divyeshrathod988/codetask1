@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Step 1: Initialize a new Git repository
+mkdir git-merge-demo
+cd git-merge-demo || exit
+git init
+echo "Initialized a new Git repository."
+
+# Step 2: Create an initial file and commit
+echo "Hello, World!" > file.txt
+git add file.txt
+git commit -m "Initial commit"
+
+# Step 3: Create and switch to a new branch
+git checkout -b feature-branch
+
+# Step 4: Make changes in the feature branch and commit
+echo "Feature branch update" >> file.txt
+git add file.txt
+git commit -m "Add changes in feature-branch"
+
+# Step 5: Switch back to the main branch
+git checkout main
+
+# Step 6: Make conflicting changes in the main branch and commit
+echo "Main branch update" >> file.txt
+git add file.txt
+git commit -m "Add changes in main branch"
+
+# Step 7: Attempt to merge feature-branch into main (introduce conflict)
+git merge feature-branch || echo "Merge conflict encountered."
+
+
